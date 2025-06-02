@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen de Historia Clínica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+<div class="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-blue-700 mb-4">Historia Clínica Registrada</h1>
+
+    <table class="min-w-full divide-y divide-gray-300 border border-gray-300">
+        <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
+        <tr><td class="font-medium p-2">Nombre completo:</td><td th:text="${historia.nombre}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Cédula / DNI:</td><td th:text="${historia.cedula}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Fecha de nacimiento:</td><td th:text="${historia.fechaNacimiento}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Edad:</td><td th:text="${historia.edad}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Sexo:</td><td th:text="${historia.sexo}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Teléfono:</td><td th:text="${historia.telefono}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Dirección:</td><td th:text="${historia.direccion}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Ocupación:</td><td th:text="${historia.ocupacion}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Estado civil:</td><td th:text="${historia.estadoCivil}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Alergias:</td><td th:text="${historia.alergias}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Enfermedades crónicas:</td><td th:text="${historia.enfermedades}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Medicamentos:</td><td th:text="${historia.medicacion}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Motivo de la consulta:</td><td th:text="${historia.motivoConsulta}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Diagnóstico preliminar:</td><td th:text="${historia.diagnostico}" class="p-2"></td></tr>
+        <tr><td class="font-medium p-2">Fecha de atención:</td><td th:text="${historia.fechaAtencion}" class="p-2"></td></tr>
+        </tbody>
+    </table>
+
+    <div class="mt-6 text-right">
+        <a th:href="@{/formularioClinico}" class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Registrar nueva historia</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Historia Clínica</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+
+<header class="bg-blue-600 text-white shadow-md">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Formulario de Historia Clínica</h1>
+        <nav>
+            <a th:href="@{/}" class="hover:underline">Volver al inicio</a>
+        </nav>
+    </div>
+</header>
+
+
+<main class="max-w-4xl mx-auto bg-white p-8 mt-10 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-6 text-blue-700">Información del Paciente</h2>
+
+    <form th:action="@{/vistaClinica}" method="POST" th:object="${historia}" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Nombre completo</label>
+            <input type="text" th:field="*{nombre}" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Cédula / DNI</label>
+            <input type="text" th:field="*{cedula}" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
+            <input type="date" th:field="*{fechaNacimiento}" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Edad</label>
+            <input type="number" th:field="*{edad}" min="0" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Sexo</label>
+            <select th:field="*{sexo}" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                <option value="">Seleccione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <span th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+            <input type="tel" th:field="*{telefono}" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Dirección</label>
+            <input type="text" th:field="*{direccion}" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Ocupación</label>
+            <input type="text" th:field="*{ocupacion}" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('ocupacion')}" th:errors="*{ocupacion}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Estado civil</label>
+            <select th:field="*{estadoCivil}" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                <option value="">Seleccione</option>
+                <option value="Soltero/a">Soltero/a</option>
+                <option value="Casado/a">Casado/a</option>
+                <option value="Divorciado/a">Divorciado/a</option>
+                <option value="Viudo/a">Viudo/a</option>
+            </select>
+            <span th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Alergias</label>
+            <input type="text" th:field="*{alergias}" placeholder="Ej: Penicilina, Mariscos..." class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('alergias')}" th:errors="*{alergias}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Enfermedades crónicas</label>
+            <textarea th:field="*{enfermedades}" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+            <span th:if="${#fields.hasErrors('enfermedades')}" th:errors="*{enfermedades}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Medicamentos que está tomando</label>
+            <textarea th:field="*{medicacion}" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+            <span th:if="${#fields.hasErrors('medicacion')}" th:errors="*{medicacion}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Motivo de la consulta</label>
+            <textarea th:field="*{motivoConsulta}" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+            <span th:if="${#fields.hasErrors('motivoConsulta')}" th:errors="*{motivoConsulta}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Diagnóstico preliminar</label>
+            <textarea th:field="*{diagnostico}" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+            <span th:if="${#fields.hasErrors('diagnostico')}" th:errors="*{diagnostico}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Fecha de atención</label>
+            <input type="date" th:field="*{fechaAtencion}" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+            <span th:if="${#fields.hasErrors('fechaAtencion')}" th:errors="*{fechaAtencion}" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="md:col-span-2 flex justify-end space-x-4 mt-6">
+            <button type="reset" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded">Limpiar</button>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded">Guardar</button>
+        </div>
+
+    </form>
+
+
+
+    <footer class="bg-blue-600 text-white text-center py-6 mt-16">
+    <p class="text-sm">&copy; 2025 Sistema de Historia Clínica. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
